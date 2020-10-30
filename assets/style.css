@@ -11,6 +11,7 @@ body {
   background: #343434;
   color: #fefefe;
   display: flex;
+  flex-direction: column;
   font-family: Helvetica, Arial, sans-serif;
   justify-content: center;
   line-height: 140%;
@@ -19,5 +20,12 @@ body {
 
 main {
   font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#start {
+  margin: 20px;
+  width: 
 }
 
