@@ -29,3 +29,11 @@ main {
   width: 
 }
 
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 10px;
+  line-height: 1em;
+}

@@ -12,21 +12,13 @@ console.log(textAnswer);
 let startScreen = document.createElement('h1');
 startScreen.textContent = 'Dom Adventure Game';
 
-const Start = document.querySelector('#start');
-let scene = document.createElement('p');
+const begin = document.querySelector('#start');
+let scene = document.createElement('ul');
+
+let eventList;
 
 
 game.appendChild(startScreen);
-
-
-
-
-Start.addEventListener('click', function() {
-    game.removeChild(startScreen);
-    scene.textContent = "You wake up in a green field."
-    game.appendChild(scene);
-})
-
 
 
 /*
@@ -220,15 +212,27 @@ const death = function(cause) {
   
   };
   
-  };
+  }; */
   
   // Starting Scene 
   const start = function() {
     // Describe Scene
-    console.log("You wake up in a green field.");
-    console.log("There are mountains surrounding you to the East and South.");
-    console.log("There is a cave opening to the North and an opening to a forest to the West\n");
-  
+    document.body.removeChild(begin);
+    game.appendChild(scene);
+    
+    eventList = ["You wake up in a green field.", "There are mountains surrounding you to the East and South.", "There is a cave opening to the North and an opening to a forest to the West"];
+
+    for (let event of eventList) {
+      let sceneEvent = document.createElement('li')
+      sceneEvent.textContent = event;
+
+      scene.appendChild(sceneEvent);
+    }
+
+    console.log(scene);
+
+    
+    /*
     // loop til prompt answered
     let hasAnswered = false;
     while (hasAnswered == false) {
@@ -254,11 +258,14 @@ const death = function(cause) {
         console.log("\nI don't understand!\n");
       }
   
-    }
+    } 
   
-  };
+  };*/
+
+};
   
   // Start Game
-  start();
-
-  */
+  begin.addEventListener('click', function() {
+    game.removeChild(startScreen);
+    return start();
+})
