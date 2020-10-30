@@ -2,22 +2,26 @@
  * DOM Adventure Game
  */
 
+// Scene Container
 let game = document.querySelector('#game');
-let player = document.querySelector('#player');
-let textAnswer = document.createElement('input');
-textAnswer.setAttribute('type', 'text')
-
-console.log(textAnswer);
-
-let startScreen = document.createElement('h1');
-startScreen.textContent = 'Dom Adventure Game';
-
-const begin = document.querySelector('#start');
+//Build Scene
 let scene = document.createElement('ul');
-
 let eventList;
 
+// Player input container
+let player = document.querySelector('#player');
+// Build Player Input 
+let label = document.createElement('label');
+let input = document.createElement('input');
 
+// Title Screen
+let startScreen = document.createElement('h1');
+startScreen.textContent = 'Dom Adventure Game';
+const begin = document.querySelector('#start');
+
+
+
+// Display Title Screen
 game.appendChild(startScreen);
 
 
@@ -216,53 +220,68 @@ const death = function(cause) {
   
   // Starting Scene 
   const start = function() {
-    // Describe Scene
+    // Add empty ul
     document.body.removeChild(begin);
     game.appendChild(scene);
+
+    // Build Form 
+    player.appendChild(label);
+    label.setAttribute('id', 'player-input');
+    label.textContent = 'Where do you go? \(Press \'return\' to confirm answer\)';
+    label.appendChild(input);
+    input.setAttribute('type', 'text');
+    input.setAttribute('id', 'answer');
+    input.setAttribute('name', 'answer');
+
     
+    // Describe Scene
+    // Store scene text in an array 'event List'
     eventList = ["You wake up in a green field.", "There are mountains surrounding you to the East and South.", "There is a cave opening to the North and an opening to a forest to the West"];
 
+    // Loop through each array item
+    // Put each item in an li
+    // Put li in 'scene' ul
     for (let event of eventList) {
-      let sceneEvent = document.createElement('li')
+      let sceneEvent = document.createElement('li');
       sceneEvent.textContent = event;
 
       scene.appendChild(sceneEvent);
     }
 
-    console.log(scene);
+    const sendInput = (event) => {
+      event.preventDefault();
 
-    
-    /*
-    // loop til prompt answered
-    let hasAnswered = false;
-    while (hasAnswered == false) {
-  
-    // Ask what to do next
-    // Prompt use to give an answer
-    let choice = prompt("\nWhere do you go?");
-  
+      let choice = input.value;
+
       // If cave/north answer, cave scene function
       if (choice == "cave" || choice == "north") {
-        return cave();
+        //return cave();
+        console.log('cave');
       }
       // If forest answer, forest scene (with death)
       else if (choice == "forest" || choice == "west") {
-        return forest();
+        //return forest();
+        console.log('forest');
       }
       // If south or east, mountain scene
       else if (choice == "east" || choice == "south" || choice == "mountains") {
-        return mountains();
+        //return mountains();
+        console.log('mountains');
       }
       // If no answer or not understandable
       else {
-        console.log("\nI don't understand!\n");
+        let sceneEvent = document.createElement('li');
+        scene.appendChild(sceneEvent);
+        sceneEvent.textContent = 'I don\'t understand!'
+        input.value='';
+        input.focus();
       }
+    }
+    player.addEventListener('submit', sendInput);
   
-    } 
-  
-  };*/
+  };
 
-};
+//};
   
   // Start Game
   begin.addEventListener('click', function() {
