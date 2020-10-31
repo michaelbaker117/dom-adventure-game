@@ -25,19 +25,42 @@ const begin = document.querySelector('#start');
 game.appendChild(startScreen);
 
 
-/*
+
 // Game over Scene; Player dies, show this Scene
 const death = function(cause) {
-    console.log(cause);
-    console.log("\nGame Over. Try again!")
+    let sceneEvent = document.createElement('li');
+    sceneEvent.textContent = cause + "\n Game Over, Try Again!";
+    scene.appendChild(sceneEvent);
   };
   
   // Mountain scene
   const mountains = function(){
-    console.log("You arrive at the mountains.");
-    console.log("You went there knowing this was a dead end and went anyways. Your energy has now been entirely exhausted.");
+    // Reset scene and form
+    game.removeChild(scene); 
+    player.removeChild(label); 
+
+    scene = document.createElement('ul');
+
+    // Add empty ul
+    game.appendChild(scene);
+
+    // Build Scene
+    // Store scene text in an array 'event List'
+    eventList = ["You arrive at the mountains.", "You went there knowing this was a dead end and went anyways. Your energy has now been entirely exhausted."];
+
+    // Loop through each array item
+    // Put each item in an li
+    // Put li in 'scene' ul
+    for (let event of eventList) {
+      let sceneEvent = document.createElement('li');
+      sceneEvent.textContent = event;
+      scene.appendChild(sceneEvent);
+    }
+
     return death("In your attempt to go back the way you came, you collapse from exhaustion. While you sleep, a hungry wolf spots you and...well you can figure out the rest.")
   }
+
+  /*
   
   // Is the player armed
   let isArmed = false;
@@ -265,7 +288,7 @@ const death = function(cause) {
       }
       // If south or east, mountain scene
       else if (choice == "east" || choice == "south" || choice == "mountains") {
-        //return mountains();
+        return mountains();
         console.log('mountains');
       }
       // If no answer or not understandable
