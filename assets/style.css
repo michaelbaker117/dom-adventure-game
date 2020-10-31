@@ -21,3 +21,18 @@ main {
   font-size: 2rem;
 }
 
+.container {
+  width: 800px;
+  display: block;
+  text-align: center;
+}
+
+button {
+  background-color: hsl(200, 100%, 50%);
+  border: 1px solid hsl(200, 100%, 30%);
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  outline: none;
+  width: 100px;
+}
