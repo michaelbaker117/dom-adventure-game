@@ -148,26 +148,45 @@ const death = function(cause) {
   
   
   };
+
+  */
   
   /// Forest scene
   const forest = function() {
-    
+     // Reset scene and form
+     game.removeChild(scene); 
+     player.removeChild(label); 
+ 
+     scene = document.createElement('ul');
+ 
+     // Add empty ul
+     game.appendChild(scene);
+ 
+     // Build Scene
+     // Store scene text in an array 'event List'
+     eventList = ["You enter the forest and find yourself face to face with a monster holding a club."];
+ 
+
+
     // moster attack
-    console.log("\nYou enter the forest and find yourself face to face with a monster holding a club.");
+    console.log("\n");
   
     // If armed, kill monster
     if (isArmed == true) {
-      console.log("You thrust your sword into the mosters heart killing it instantly!");
-      console.log("You continue to a ruined stone building.");
-      console.log("Curious, you enter.")
-      console.log("You see two doors, one of the left, one on the right.");
+      // Build Scene
+      // Store scene text in an array 'event List'
+      eventList = ["You enter the forest and find yourself face to face with a monster holding a club." ,"You thrust your sword into the mosters heart killing it instantly!", "You continue to a ruined stone building.", "Curious, you enter.", "You see two doors, one of the left, one on the right."];
+
+      for (let event of eventList) {
+        let sceneEvent = document.createElement('li');
+        sceneEvent.textContent = event;
   
-      // loop til answered
-      let hasAnswered = false;
-      while (hasAnswered == false) {
-  
+        scene.appendChild(sceneEvent);
+      };
+      
+      /*
       let choice = prompt("\nWhich door do you choose?");
-  
+      
       // Choose left; die
       if (choice == "left" || choice == "left door") {
         console.log("You enter the door on the left into a dark room.");
@@ -181,14 +200,17 @@ const death = function(cause) {
         console.log("I don't understand")
       };
   
-      };
     }
+    */
+
     // If not armed, death scene
     else {
       console.log("The monster (being evil and all) attacks you.\n");
       return death("The monster being twice as big and as strong as you are, kills you because you have no way to defend yourself. If only you had a sword...");
     }
   };
+
+  /*
   
   // Cave Scene
   const cave = function() {
@@ -283,13 +305,12 @@ const death = function(cause) {
       }
       // If forest answer, forest scene (with death)
       else if (choice == "forest" || choice == "west") {
-        //return forest();
+        return forest();
         console.log('forest');
       }
       // If south or east, mountain scene
       else if (choice == "east" || choice == "south" || choice == "mountains") {
         return mountains();
-        console.log('mountains');
       }
       // If no answer or not understandable
       else {
