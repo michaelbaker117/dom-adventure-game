@@ -204,7 +204,7 @@ const death = function(cause) {
     */
 
     // If not armed, death scene
-    else {
+    //else {
       console.log("The monster (being evil and all) attacks you.\n");
       return death("The monster being twice as big and as strong as you are, kills you because you have no way to defend yourself. If only you had a sword...");
     }
