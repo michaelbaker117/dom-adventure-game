@@ -211,25 +211,29 @@ const start = function() {
   sceneDiv.textContent = "You awake in a dimly lit room. There are doors to your left and right. Which door do you pick?";
   console.log(sceneDiv);
   // player choices
+
+  // Define button one as left door
   const button1 = document.querySelector('.btn1');
+  button1.textContent = 'left';
   console.log(button1);
+
+  // If left is chosen, return bearRoom
   button1.addEventListener('click', () => {
-    button1.textContent = 'left';
+    return bearRoom();
   });
 
+  // Define button two as right door
   const button2 = document.querySelector('.btn2');
+  button2.textContent = 'right';
+
+  // If right is chosen, return pitTrap
   console.log(button2);
   button2.addEventListener('click', () => {
-    button2.textContent = 'right';
+    return pitTrap();
   });
 
-  // Create branches for each choice
-  if (button1) {
-    return bearRoom();
-} else if (button2) {
-    return pitTrap();
-  }
 };
+
 
 // Start The Game!
 start();
