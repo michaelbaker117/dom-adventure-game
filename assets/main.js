@@ -52,6 +52,93 @@ const death = function() {
   //restart
 };
 
+// After defeating the dragon you escape
+const escapeRoom = function() {
+  sceneDiv.textContent = "Congratulations! You have defeated the dragon and have escaped the dungeon! You Win 50 pieces of gold!";
+  //restart
+};
+
+// The final scene, the player has almost won!
+const goldRoom = function() {
+  // What does the scene look like?
+  sceneDiv.textContent = "Hurray! You Win!!! This room has a big pile of gold. How much gold do you take?";
+
+  // Ask for user input, then convert the answer to a number value
+  const choice = Number(document.createElement('input'));
+
+  // Choice couldn't be converted to a number, so they typed a bad answer
+  if (Number.isNaN(choice)) {
+    // Stop this scene and send them to the death scene
+    return death();
+  }
+
+  // Choice was over 100, which is far too greedy
+  if (choice > 100) {
+    // Stop this scene and send them to the death scene
+    sceneDiv.textContent = "You took too much and couldn't carry it, unable to escape!";
+    return death();
+  }
+};
+
+// You chose the Boss room, now fight the boss
+const bossRoom = function() {
+  // You see a big mean dragon in the middle of the room
+   sceneDiv.textContent = "You have entered the boss room. Good luck Adventurer! Choose a weapon to defeat the dragon? Sword and shield, bow and arrow, or magic staff?";
+ 
+   // choose a weapon to defeat the dragon
+   const weapon1 = document.qeurySelector('.btn1');
+   console.log(weapon1);
+   weapon1.addEventListener('click', () => {
+     weapon1.textContent = "sword and shield";
+   });
+ 
+   const weapon2 = document.querySelector('.btn2');
+   console.log(weapon2);
+   weapon2.addEventListener('click',() => {
+     weapon2.textContent = "bow and arrow";
+   });
+ 
+   const weapon3 = document.querySelector('click', () => {
+     console.log(weapon3);
+     weapon3.addEventListener('click', () => {
+       weapon3.textContent = "magic staff";
+     });
+   });
+ 
+   //weapon buttons
+     if (weapon1) {
+       return escapeRoom();
+     } else if (weapon2) {
+       return death();
+     } else if (weapon3) {
+       return emptyRoom();
+     }
+ };
+
+// After moving the bear, choose another door before the gold room
+const emptyRoom = function() {
+  // Empy room with 1 door on the left and right
+  sceneDiv.textContent = "You have entered the empty room! Choose the correct door to the gold room. Beware of the dragon, if you choose incorrectly! Left door or right door?";
+
+  // Choose the left or right door
+  const button1 = document.querySelector('.btn1');
+  console.log(button1);
+  button1.addEventListener('click', () => {
+    button1.textContent = 'right';
+  });
+
+  const button2 = document.qeurySelector('.btn2');
+  console.log(button2);
+  button2.addEventListener('click', () => {
+    button2.textContent = 'left';
+  });
+    if(button1) {
+      return goldRoom();
+    } else if (button2) {
+      return bossRoom();
+    }
+};
+
 //pit trap scene
 const pitTrap = function() {
   // What does the scene look like?
@@ -115,93 +202,6 @@ const bearRoom = function() {
       // Stop this scene and send them to the empty room
       return emptyRoom();
     }
-  }
-};
-
-// After moving the bear, choose another door before the gold room
-const emptyRoom = function() {
-  // Empy room with 1 door on the left and right
-  sceneDiv.textContent = "You have entered the empty room! Choose the correct door to the gold room. Beware of the dragon, if you choose incorrectly! Left door or right door?";
-
-  // Choose the left or right door
-  const button1 = document.querySelector('.btn1');
-  console.log(button1);
-  button1.addEventListener('click', () => {
-    button1.textContent = 'right';
-  });
-
-  const button2 = document.qeurySelector('.btn2');
-  console.log(button2);
-  button2.addEventListener('click', () => {
-    button2.textContent = 'left';
-  });
-    if(button1) {
-      return goldRoom();
-    } else if (button2) {
-      return bossRoom();
-    }
-};
-
-// You chose the Boss room, now fight the boss
-const bossRoom = function() {
- // You see a big mean dragon in the middle of the room
-  sceneDiv.textContent = "You have entered the boss room. Good luck Adventurer! Choose a weapon to defeat the dragon? Sword and shield, bow and arrow, or magic staff?";
-
-  // choose a weapon to defeat the dragon
-  const weapon1 = document.qeurySelector('.btn1');
-  console.log(weapon1);
-  weapon1.addEventListener('click', () => {
-    weapon1.textContent = "sword and shield";
-  });
-
-  const weapon2 = document.querySelector('.btn2');
-  console.log(weapon2);
-  weapon2.addEventListener('click',() => {
-    weapon2.textContent = "bow and arrow";
-  });
-
-  const weapon3 = document.querySelector('click', () => {
-    console.log(weapon3);
-    weapon3.addEventListener('click', () => {
-      weapon3.textContent = "magic staff";
-    });
-  });
-
-  //weapon buttons
-    if (weapon1) {
-      return escapeRoom();
-    } else if (weapon2) {
-      return death();
-    } else if (weapon3) {
-      return emptyRoom();
-    }
-};
-
-// After defeating the dragon you escape
-const escapeRoom = function() {
-  sceneDiv.textContent = "Congratulations! You have defeated the dragon and have escaped the dungeon! You Win 50 pieces of gold!";
-  //restart
-};
-
-// The final scene, the player has almost won!
-const goldRoom = function() {
-  // What does the scene look like?
-  sceneDiv.textContent = "Hurray! You Win!!! This room has a big pile of gold. How much gold do you take?";
-
-  // Ask for user input, then convert the answer to a number value
-  const choice = Number(document.createElement('input'));
-
-  // Choice couldn't be converted to a number, so they typed a bad answer
-  if (Number.isNaN(choice)) {
-    // Stop this scene and send them to the death scene
-    return death();
-  }
-
-  // Choice was over 100, which is far too greedy
-  if (choice > 100) {
-    // Stop this scene and send them to the death scene
-    sceneDiv.textContent = "You took too much and couldn't carry it, unable to escape!";
-    return death();
   }
 };
 
