@@ -45,31 +45,11 @@ button3.addEventListener('click', () => {
   button3.textContent = '';
 })*/
 
-
-// The player starts here
-const start = function() {
-  // What does this scene look like?
-  sceneDiv.textContent = "You awake in a dimly lit room. There are doors to your left and right. Which door do you pick?";
-  console.log(sceneDiv);
-  // player choices
-  const button1 = document.querySelector('.btn1');
-  console.log(button1);
-  button1.addEventListener('click', () => {
-    button1.textContent = 'left';
-  });
-
-  const button2 = document.querySelector('.btn2');
-  console.log(button2);
-  button2.addEventListener('click', () => {
-    button2.textContent = 'right';
-  });
-
-  // Create branches for each choice
-  if (button1) {
-    return bearRoom();
-} else if (button2) {
-    return pitTrap();
-  }
+// If the player dies, show this scene
+const death = function() {
+  // Print their cause of death, and then a final message
+  //sceneDiv.textContent = "Game Over! Good try. Play Again?";
+  //restart
 };
 
 //pit trap scene
@@ -185,6 +165,7 @@ const bossRoom = function() {
     weapon3.addEventListener('click', () => {
       weapon3.textContent = "magic staff";
     });
+  });
 
   //weapon buttons
     if (weapon1) {
@@ -224,11 +205,30 @@ const goldRoom = function() {
   }
 };
 
-// If the player dies, show this scene
-const death = function() {
-  // Print their cause of death, and then a final message
-  //sceneDiv.textContent = "Game Over! Good try. Play Again?";
-  //restart
+// The player starts here
+const start = function() {
+  // What does this scene look like?
+  sceneDiv.textContent = "You awake in a dimly lit room. There are doors to your left and right. Which door do you pick?";
+  console.log(sceneDiv);
+  // player choices
+  const button1 = document.querySelector('.btn1');
+  console.log(button1);
+  button1.addEventListener('click', () => {
+    button1.textContent = 'left';
+  });
+
+  const button2 = document.querySelector('.btn2');
+  console.log(button2);
+  button2.addEventListener('click', () => {
+    button2.textContent = 'right';
+  });
+
+  // Create branches for each choice
+  if (button1) {
+    return bearRoom();
+} else if (button2) {
+    return pitTrap();
+  }
 };
 
 // Start The Game!
